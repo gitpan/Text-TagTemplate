@@ -4,4 +4,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     'NAME'	=> 'Text::TagTemplate',
     'VERSION_FROM' => 'TagTemplate.pm', # finds $VERSION
+    'LIBS'	=> [''],   # e.g., '-lm' 
+    'DEFINE'	=> '',     # e.g., '-DHAVE_SOMETHING' 
+    'INC'	=> '',     # e.g., '-I/usr/include/other' 
 );

@@ -1,91 +1,51 @@
-Text::TagTemplate - Simple Text Templates XML-like "shortcut" tags
+================================================================================
 
-Copyright (c) 1999-2000 Geoffrey R. Hutchison
+README for Text::TagTemplate
 
-You may distribute under the terms of either the GNU General Public 
-License or the Artistic License, as specified in the Perl README file.
-For use with Apache httpd and mod_perl, see also Apache copyright.
+Copyright (C) 1999 SF Interactive, Inc.  All rights reserved.
 
-THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED 
-WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF 
-MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+Maintainer: Matisse Enzer <matisse@matisse.net>
+Author:  Jacob Davies <jacob@well.com> <jacob@sfinteractive.com>
 
+$Id: README,v 1.5 2002/06/01 15:14:42 matisse Exp $
 
-OVERVIEW
+================================================================================
 
-I don't pretend that this is a unique idea. There are *many* Perl
-template systems. What separates this one from the pack (AFAIK) is
-that it supports more than just variable substituion. Using XML-like
-markup, you can include other template files, perform simple variable
-assignment, nested namespaces, and best of all, perform simple looping
-constructs. For kicks, it also offers the CGI environment variables as
-builtins, as well as the server's current date, time and date/time string.
+This is the Text::TagTemplate module.
 
-In short the module offers what I see as the 80/20 rule. It doesn't
-allow full Perl constructs (see something like ePerl or HTML::Embperl
-for that) but implements the 20% of the features that make up 80% of
-the needs for templates.
+It's designed to make the production of web-based applications such as CGI
+programs and Apache::Registry scripts easier and faster, by separating the HTML
+coding from the coding of the application logic.  It's also designed to be
+flexible, to use a template interface that is simple and easy for
+non-programmers to understand, and to be reasonably fast.
 
-It also serves as an excellent pre-processor for either ePerl or
-HTML::Embperl or the like. ;-)
+There is not much particularly web-specific about it, and indeed it may well
+prove useful in other application areas; however, that is the main focus of the
+design.
 
+There are other modules that do similar things that you may or may not be
+interested in:
 
-DOCUMENTATION
+	CGI::FastTemplate
+	Text::Template
+	Text::FillIn
 
-The Template.pm file contains the perldoc documentation. I won't
-repeat it here since this may become outdated. Simply call perldoc on it:
+If you know of others, please inform me.
 
-perldoc Template.pm
+To install this module, you should just be able to do:
 
+	perl Makefile.PL
+	make
+	make install
 
-EXAMPLES
+Once you've done that, use ``perldoc Text::TagTemplate'' for more
+documentation.  You may be interested in looking at the example CGI application
+supplied in the example/ subdirectory, which demonstrates some of the functions
+of this module and may help you towards building your first application with
+it.
 
-The example/ directory contains some example template files. The .ttt
-files are used by the test script. The .html files are some examples
-as to how the templates might be used in an HTML setting.
+I'd love to hear your suggestions, amendments, comments, bug reports, bug
+fixes, and the like.  Direct them to <jacob@well.com>.
 
-In addition the t/example.t script contains a sample of how to call the
-parser. Here's the two-liner:
-
-        my $interp = Text::TagTemplate->new("./examples");
-        print $interp->compose(\%namespace, "example.ttt");
-
-Here "./examples" is the directory to use for reading templates (and
-template includes). Then in the compose, \%namespace is a reference to
-the hash to use for variable interpolation and example.ttt is the
-sample file.
-
-
-FEEDBACK and BUG REPORTS
-
-Obviously, please let me know if you find this module useful. Bug reports,
-questions, feature suggestions, patches, etc. are quite
-welcome. Opinions on performance issues would be greatly appreciated
-since I haven't tested it too much in "live" situations.
-
-
-THANKS
-
-This code was inspired by the template system outlined in a Wired
-WebMonkey article by Brian Slesinsky:  
-http://www.hotwired.com/webmonkey/code/97/21/index2a.html
-
-However, this code differs not only in the eventual template language
-outlined in the article, it is not based in any way on the code
-mentioned in the article (available under a more restrictive license).
-
-Thanks are also necessary to eZiba.com, especially DeWitt Clinton
-<dewitt@eziba.com> for their feedback and for letting me develop this
-code on their dime.
-
-Finally, I thank Alberto Accomazzi <alberto@cfa0.harvard.edu> and
-Frank Hoehne <HoehneF@ec1.bp.com> for suggestions and bug fixes and
-Thomas Wagner <thomas_wagner@hp.com> for significant contributions
-to version 1.1.0.
-
-AUTHOR
-
-Geoff Hutchison <ghutchis@wso.williams.edu
-
-
-
+If you use this module in a web application, I'd also love to hear about it,
+particularly if the web application is also free software.
