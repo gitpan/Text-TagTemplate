@@ -31,8 +31,8 @@ use strict;
 use 5.004;
 use English;
 use vars qw( $VERSION );
-# '$Revision: 1.11 $' =~ /([\d.]+)/;
-$VERSION = '1.8';
+# '$Revision: 1.13 $' =~ /([\d.]+)/;
+$VERSION = '1.81';
 use IO::File;
 require Exporter;
 use vars qw ( @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS );
@@ -323,10 +323,8 @@ Tag names and parameter names are, by default, case-insensitive (they are
 converted to upper-case when supplied).  You can change this behaviour by
 using the auto_cap() method.  I don't recommend doing that, though.
 
-There are four special parameters that can be supplied to any tag, HTMLESC,
-URLESC, SELECTEDIF, and CHECKEDIF.
-
-HTMLESC and URLESC cause the text returned by the tag to be HTML or URL escaped,
+There are four special parameters that can be supplied to any tag, HTMLESC and
+URLESC.  Two of them cause the text returned by the tag to be HTML or URL escaped,
 which makes outputting data from plain-text sources like databases or text
 files easier for the programmer.  An example might be:
 
@@ -337,7 +335,7 @@ without first escaping it.  Another might be:
 
 	<A HREF="/cgi-bin/lookup.cgi?key=<#RECORD_KEY URLESC>">
 
-TODO: Document SELECTEDIF and CHECKEDIF
+
 
 A typical template might look like:
 
@@ -1219,14 +1217,12 @@ sub parse
 		} elsif ( exists $params{ URLESC } ) {
 			$rep = _urlesc $rep;
 		}
-# TODO:  Document SELECTEDIF
 		if ( exists $params{ SELECTEDIF } ) {
 			if ( $rep eq $params{ VALUE } ) {
 				$rep = 'SELECTED';
 			} else {
 				$rep = '';
 			}
-# TODO: Document CHECKEDIF
 		} elsif ( exists $params{ CHECKEDIF } ) {
 			if ( $rep eq $params{ VALUE } ) {
 				$rep = 'CHECKED';
@@ -1237,7 +1233,7 @@ sub parse
 
 		# Substitute in the string.
                 {
-                    #no warnings; # Avoid stoopid warnings in case $rep is empty
+                    no warnings; # Avoid stoopid warnings in case $rep is empty
                     $string =~ s/<#$q_contents>/$rep/;
                 }
         }

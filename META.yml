@@ -1,6 +1,6 @@
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         Text-TagTemplate
-version:      1.8
+version:      1.81
 version_from: TagTemplate.pm
 installdirs:  site
 requires:
